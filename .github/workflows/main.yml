@@ -9,7 +9,13 @@ on:
 jobs:
   pozdrav:
     runs-on: ubuntu-latest
+    environment: production
     steps:
+      - name: Deploy u produkciju
+        env:
+          KEY: ${{ secrets.DEPLOY_KEY }}
+        run: echo "Deployujem u produkciju..."
+        
       - name: Checkout koda
         uses: actions/checkout@v4
         
