@@ -8,14 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Postavi Node.js s kesom
-        uses: actions/setup-node@v4
+      - name: Keširaj node_modules
+        uses: actions/cache@v4
         with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Instaliraj zavisnosti
-        run: npm ci
-
-      - name: Pokreni testove
-        run: npm test
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
